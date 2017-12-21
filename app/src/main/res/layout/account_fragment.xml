@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingLeft="5dp"
+            android:paddingRight="5dp"
+            android:paddingTop="3dp"
+            android:id="@+id/relativeLayout2">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="35sp"
+                android:layout_toEndOf="@+id/account_image"
+                android:weightSum="3"
+                android:padding="3dp"
+                android:id="@+id/linearLayout2">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="35sp"
+                    android:id="@+id/account_name"
+                    android:layout_weight="2"
+                    android:layout_toEndOf="@+id/account_image"
+                    android:hint="account_name"
+                    android:textSize="24sp"
+                    android:gravity="bottom|left"/>
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="35sp"
+                    android:id="@+id/account_level"
+                    android:layout_below="@+id/account_name"
+                    android:layout_alignParentEnd="true"
+                    android:hint="normal"
+                    android:textSize="24sp"
+                    android:gravity="left|bottom"
+                    android:layout_toEndOf="@+id/account_image" />
+            </LinearLayout>
+
+            <ImageView
+                android:layout_width="80sp"
+                android:layout_height="80sp"
+                android:id="@+id/account_image"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentStart="true"
+                android:src="@drawable/airplane"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="45sp"
+                android:padding="3dp"
+                android:layout_below="@+id/linearLayout2"
+
+                android:layout_toEndOf="@+id/account_image">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:id="@+id/account_mail"
+                    android:hint="abc12354a@gmail.com"
+                    android:textSize="24sp"
+                    android:gravity="left|bottom"/>
+            </LinearLayout>
+        </RelativeLayout>
+        <ListView
+            android:padding="5dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/relativeLayout2"
+            android:id="@+id/account_list"></ListView>
+    </RelativeLayout>
+</RelativeLayout>

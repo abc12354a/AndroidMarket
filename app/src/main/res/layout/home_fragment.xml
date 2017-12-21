@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:focusable="true"
+    android:focusableInTouchMode="true"
+    android:paddingLeft="5dp"
+    android:paddingRight="5dp"
+    android:id="@+id/homepage">
+    <android.support.design.widget.FloatingActionButton
+        android:layout_width="wrap_content"
+        app:fabSize="normal"
+        android:layout_height="wrap_content"
+        android:src="@drawable/refresh"
+        android:id="@+id/home_refresh"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginEnd="40sp"
+        android:layout_marginBottom="40sp"
+        />
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="search..."
+        android:id="@+id/editText2"
+        android:layout_toStartOf="@+id/home_search" />
+
+    <Button
+        android:layout_width="50sp"
+        android:layout_height="50sp"
+        android:background="@drawable/go"
+        android:id="@+id/home_search"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true" />
+    <android.support.v7.widget.RecyclerView
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/editText2"
+        android:id="@+id/home_list">
+    </android.support.v7.widget.RecyclerView>
+</RelativeLayout>
