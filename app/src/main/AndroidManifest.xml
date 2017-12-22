@@ -23,7 +23,7 @@
         android:theme="@style/AppTheme">
         <activity android:name=".ItemDetails" />
         <activity
-            android:name=".MainActivity"
+            android:name=".Login"
             android:label="Shop">
             <intent-filter>
                 <category android:name="android.intent.category.LAUNCHER" />
@@ -34,7 +34,7 @@
         <activity android:name=".Orders" />
         <activity android:name=".User_Edit" />
         <activity android:name=".TestActivity" />
-        <activity android:name=".Login" />
+        <activity android:name=".MainActivity" />
         <activity android:name=".Add_Item"></activity>
     </application>
 

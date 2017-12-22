@@ -29,10 +29,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         //test for net
-        //------------------------------------------------------
-        Bmob.initialize(this,"7b3fba74df74db9d68950773c6cfa6f0");
-        //------------------------------------------------------
-        Connector.getDatabase();
         Toolbar toolbar = (Toolbar)findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         mDrawerLayout = (DrawerLayout)findViewById(R.id.drawer_layout);

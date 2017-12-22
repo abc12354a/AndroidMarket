@@ -5,6 +5,8 @@
     android:id="@+id/activity_login"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:focusable="true"
+    android:focusableInTouchMode="true"
     tools:context="com.example.abc12.navigationview.Login">
     <FrameLayout
         android:layout_width="match_parent"
@@ -58,6 +60,7 @@
                     android:text="用户名"/>
                 <EditText
                     android:id="@+id/login_username"
+                    android:inputType="textEmailAddress"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="7"
@@ -88,6 +91,7 @@
                     android:layout_height="match_parent"
                     android:layout_weight="7"
                     android:textSize="20dp"
+                    android:inputType="textPassword"
                     android:paddingLeft="5dp"
                     android:gravity="bottom|left"
                     android:hint="pass_word"/>
@@ -141,5 +145,11 @@
                 android:padding="5dp"
                 android:text="帮助：用户名请用邮箱注册。若第一次使用，请先注册。系统会发送邮件到邮箱，注意查收。"/>
         </RelativeLayout>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_alignParentBottom="true"
+            android:layout_height="40sp"
+            android:hint="公司信息..."
+            android:gravity="center"/>
     </RelativeLayout>
 </RelativeLayout>
