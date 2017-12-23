@@ -4,135 +4,132 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingTop="5dp"
-    android:paddingLeft="5dp"
-    android:paddingRight="5dp"
-    android:paddingBottom="10dp"
     android:id="@+id/cartpage">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_above="@+id/relativeLayout"
+            android:paddingLeft="5dp"
+            android:paddingRight="5dp"
+            android:id="@+id/frameLayout"
+            android:layout_below="@+id/relativeLayout3">
+
+            <android.support.v7.widget.RecyclerView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/cart_item_list"
+                ></android.support.v7.widget.RecyclerView>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="60sp"
+            android:id="@+id/relativeLayout3"
+            android:paddingLeft="5dp"
+            android:paddingRight="5dp"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentStart="true">
+
+            <Button
+                android:layout_width="40sp"
+                android:layout_height="40sp"
+                android:layout_centerVertical="true"
+                android:id="@+id/cart_pickall"
+                android:background="@drawable/icon_pickall"
+                android:layout_alignBaseline="@+id/cart_account"
+                android:layout_alignBottom="@+id/cart_account"
+                android:layout_toStartOf="@+id/refresh" />
+
+            <Button
+                android:layout_width="40sp"
+                android:layout_height="40sp"
+                android:layout_centerVertical="true"
+                android:background="@drawable/iocn_unpickall"
+                android:id="@+id/cart_unpickall"
+                android:layout_toStartOf="@+id/cart_pickall"
+                android:layout_alignBottom="@+id/cart_pickall" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="40sp"
+                android:hint="abc12354a@gmail.com"
+                android:textSize="18sp"
+                android:paddingBottom="3dp"
+                android:paddingLeft="3dp"
+                android:id="@+id/cart_account"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentStart="true"
+                android:gravity="left|bottom"
+                android:layout_toStartOf="@+id/cart_unpickall" />
+
+            <Button
+                android:layout_width="40sp"
+                android:layout_centerVertical="true"
+                android:layout_height="40sp"
+                android:background="@drawable/refresh"
+                android:id="@+id/refresh"
+                android:layout_alignBaseline="@+id/cart_account"
+                android:layout_alignBottom="@+id/cart_account"
+                android:layout_alignParentEnd="true" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="50sp"
+            android:paddingRight="10dp"
+            android:paddingLeft="10dp"
+            android:id="@+id/relativeLayout"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentStart="true">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Total Price:  "
+                android:textSize="20sp"
+                android:id="@+id/cart_price"
+                android:layout_alignBaseline="@+id/cart_showprice"
+                android:layout_alignBottom="@+id/cart_showprice"
+                android:layout_alignParentStart="true" />
+
+            <TextView
+                android:layout_width="50sp"
+                android:layout_height="wrap_content"
+                android:hint="$0.0"
+                android:paddingLeft="5dp"
+                android:textSize="20sp"
+                android:id="@+id/cart_showprice"
+                android:paddingBottom="0dp"
+                android:layout_centerVertical="true"
+                android:layout_toEndOf="@+id/cart_price" />
+
+            <Button
+                android:layout_width="50sp"
+                android:layout_height="50sp"
+                android:background="@drawable/delete"
+                android:id="@+id/cart_del"
+
+                android:layout_alignParentTop="true"
+                android:layout_alignParentEnd="true" />
+
+
+        </RelativeLayout>
+    </RelativeLayout>
     <android.support.design.widget.FloatingActionButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_alignParentEnd="true"
-        android:layout_marginEnd="40sp"
-        android:layout_marginBottom="40sp"
+        android:layout_marginEnd="60sp"
+        android:layout_marginBottom="70sp"
         app:fabSize="normal"
         android:id="@+id/cart_pay"
         android:src="@drawable/ok"
         />
-    <ProgressBar
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/cart_progressbar"
-        android:visibility="invisible"/>
-    <FrameLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_above="@+id/relativeLayout"
-        android:paddingLeft="5dp"
-        android:paddingRight="5dp"
-        android:id="@+id/frameLayout"
-        android:layout_below="@+id/relativeLayout3">
 
-        <android.support.v7.widget.RecyclerView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:id="@+id/cart_item_list"
-            ></android.support.v7.widget.RecyclerView>
-    </FrameLayout>
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="60sp"
-        android:id="@+id/relativeLayout3"
-        android:paddingLeft="5dp"
-        android:paddingRight="5dp"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentStart="true">
-
-        <Button
-            android:layout_width="40sp"
-            android:layout_height="40sp"
-            android:id="@+id/cart_pickall"
-            android:background="@drawable/icon_pickall"
-            android:layout_alignBaseline="@+id/cart_account"
-            android:layout_alignBottom="@+id/cart_account"
-            android:layout_toStartOf="@+id/refresh" />
-
-        <Button
-            android:layout_width="40sp"
-            android:layout_height="40sp"
-            android:background="@drawable/iocn_unpickall"
-            android:id="@+id/cart_unpickall"
-            android:layout_toStartOf="@+id/cart_pickall"
-            android:layout_alignBottom="@+id/cart_pickall" />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="40sp"
-            android:hint="abc12354a@gmail.com"
-            android:textSize="22sp"
-            android:paddingBottom="0dp"
-            android:id="@+id/cart_account"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentStart="true"
-            android:gravity="left|bottom"
-            android:layout_toStartOf="@+id/cart_unpickall" />
-
-        <Button
-            android:layout_width="40sp"
-            android:layout_height="40sp"
-            android:background="@drawable/refresh"
-            android:id="@+id/refresh"
-            android:layout_alignBaseline="@+id/cart_account"
-            android:layout_alignBottom="@+id/cart_account"
-            android:layout_alignParentEnd="true" />
-    </RelativeLayout>
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="50sp"
-        android:paddingRight="10dp"
-        android:paddingLeft="10dp"
-        android:id="@+id/relativeLayout"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentStart="true">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Total Price:  "
-            android:textSize="20sp"
-            android:id="@+id/cart_price"
-            android:layout_alignBaseline="@+id/cart_showprice"
-            android:layout_alignBottom="@+id/cart_showprice"
-            android:layout_alignParentStart="true" />
-
-        <TextView
-            android:layout_width="50sp"
-            android:layout_height="wrap_content"
-            android:hint="$0.0"
-            android:paddingLeft="5dp"
-            android:textSize="20sp"
-            android:id="@+id/cart_showprice"
-            android:paddingBottom="0dp"
-            android:layout_centerVertical="true"
-            android:layout_toEndOf="@+id/cart_price" />
-
-
-
-
-        <Button
-            android:layout_width="50sp"
-            android:layout_height="50sp"
-            android:background="@drawable/delete"
-            android:id="@+id/cart_del"
-
-            android:layout_alignParentTop="true"
-            android:layout_toEndOf="@+id/cart_showprice" />
-
-
-    </RelativeLayout>
 
 
 </RelativeLayout>
