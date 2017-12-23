@@ -1,5 +1,10 @@
 package com.example.abc12.navigationview;
 
+import android.app.Activity;
+import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
@@ -20,11 +25,32 @@ public class Add_Item extends AppCompatActivity {
     private EditText price;
     private EditText describe;
     private FloatingActionButton ok;
+    private String path;
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if(resultCode == Activity.RESULT_OK){
+            Uri uri = data.getData();
+            path = uri.getPath();
+            Bitmap bitmap = BitmapFactory.decodeFile(path);
+            img.setImageBitmap(bitmap);
+        }
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add__item);
         InitUI();
+        img.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent OpenFile = new Intent(Intent.ACTION_GET_CONTENT);
+                OpenFile.setType("image/*");
+                OpenFile.addCategory(Intent.CATEGORY_OPENABLE);
+                startActivityForResult(OpenFile,1);
+            }
+        });
+
         ok.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
