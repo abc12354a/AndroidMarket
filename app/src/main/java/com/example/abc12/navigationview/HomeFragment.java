@@ -9,23 +9,23 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ProgressBar;
-
-import com.example.abc12.navigationview.Adapter.ItemAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import cn.bmob.v3.BmobQuery;
+import cn.bmob.v3.exception.BmobException;
+import cn.bmob.v3.listener.FindListener;
 
 /**
  * Created by abc12 on 2017/12/11.
  */
 
 public class HomeFragment extends Fragment {
-    private List<item> itemList = new ArrayList<>();
+    private List<item_net> itemList = new ArrayList<>();
     private ItemAdapter itemAdapter;
     private ProgressDialog progressDialog;
     private Handler handler = new Handler(){
@@ -33,11 +33,8 @@ public class HomeFragment extends Fragment {
         public void handleMessage(Message msg) {
             switch (msg.what){
                 case 1:
-                    Log.d("progress:","on");
-                    if(initItemList()){
-                        Log.d("progress:","ok");
-                        progressDialog.cancel();
-                        itemAdapter.notifyDataSetChanged();}
+                    progressDialog.cancel();
+                    itemAdapter.notifyDataSetChanged();
                     break;
                 default:
                     break;
@@ -58,7 +55,7 @@ public class HomeFragment extends Fragment {
         floatingActionButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                progressDialog = ProgressDialog.show(getContext(),"alert","refresh",true,true,null);
+                progressDialog = ProgressDialog.show(view.getContext(),"alert","refresh",true,true,null);
                 new Handler().postDelayed(new Runnable() {
                     @Override
                     public void run() {
@@ -72,20 +69,23 @@ public class HomeFragment extends Fragment {
     }
     private boolean initItemList(){
         itemList.clear();
-        for (int i = 0;i<2;i++){
-            item item1 = new item("apple","$12",R.drawable.airplane);
-            itemList.add(item1);
-            item item2 = new item("air","$13",R.drawable.cart);
-            itemList.add(item2);
-            item item3 = new item("menu","$15",R.drawable.airplane);
-            itemList.add(item3);
-            item item4 = new item("apple","$11",R.drawable.airplane);
-            itemList.add(item4);
-            item item5 = new item("222","$17",R.drawable.cart);
-            itemList.add(item5);
-            item item6 = new item("RPG","$20",R.drawable.airplane);
-            itemList.add(item6);
-        }
+        progressDialog = ProgressDialog.show(getContext(),"更新数据中","请稍等。。。",true,true,null);
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                BmobQuery<item_net> query = new BmobQuery<item_net>();
+                query.addWhereGreaterThan("price",0);
+                query.setLimit(10);
+                query.findObjects(new FindListener<item_net>() {
+                    @Override
+                    public void done(List<item_net> list, BmobException e) {
+                        if(e == null){
+                            
+                        }
+                    }
+                });
+            }
+        }, 100);
         return true;
     }
 }
