@@ -33,7 +33,6 @@ import java.util.Map;
 
 public class CartFragment extends Fragment {
     public final static int PROGRESS_ON = 1;
-    private ProgressBar progressBar;
     private List<item> itemList = new ArrayList<>();
     private CartItemAdapter adapter;
     private RecyclerView ItemListView;
@@ -47,7 +46,6 @@ public class CartFragment extends Fragment {
                     if(initItemList()){
                         Log.d("progress:","ok");
                         progressDialog.cancel();
-                        progressBar.setVisibility(ProgressBar.INVISIBLE);
                         adapter.notifyDataSetChanged();}
                     break;
                 default:
@@ -60,7 +58,6 @@ public class CartFragment extends Fragment {
         View view = inflater.inflate(R.layout.cart_fragment,container,false);
         initItemList();
         ItemListView = (RecyclerView)view.findViewById(R.id.cart_item_list);
-        progressBar = (ProgressBar)view.findViewById(R.id.cart_progressbar);
         FloatingActionButton pay = (FloatingActionButton)view.findViewById(R.id.cart_pay);
         Button Pickall = (Button)view.findViewById(R.id.cart_pickall);
         Button UnPickall = (Button)view.findViewById(R.id.cart_unpickall);

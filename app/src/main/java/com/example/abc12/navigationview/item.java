@@ -13,9 +13,9 @@ import java.io.Serializable;
 public class item extends DataSupport{
     private String name;
     private String price;
-    private int imageid;
+    private String imageid;
     private Integer count;
-    item(String name,String price,int imageid) {
+    item(String name,String price,String imageid) {
         this.name = name;
         this.price = price;
         this.imageid = imageid;
@@ -30,11 +30,11 @@ public class item extends DataSupport{
         return count;
     }
 
-    public int getImageid(){
+    public String getImageid(){
         return this.imageid;
     }
 
-    public void setImageid(int imageid) {
+    public void setImageid(String imageid) {
         this.imageid = imageid;
     }
 

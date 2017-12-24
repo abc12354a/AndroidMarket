@@ -4,6 +4,9 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.os.Environment;
 import android.preference.PreferenceManager;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
@@ -27,13 +30,15 @@ import java.util.List;
 
 public class ItemDetails extends AppCompatActivity {
     private item detail_item;
+    private String name;
+    private String price;
+    private String imageid;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.itemdetails);
         Toolbar toolbar = (Toolbar)findViewById(R.id.detail_toolbar);
         Button AddToCart = (Button)findViewById(R.id.detail_buy);
-        Button ShowTest = (Button)findViewById(R.id.showtest);
         setSupportActionBar(toolbar);
         ActionBar actionBar = getSupportActionBar();
         if(actionBar !=null){
@@ -47,28 +52,21 @@ public class ItemDetails extends AppCompatActivity {
         });
         ImageView Detail_image = (ImageView)findViewById(R.id.detail_image);
         Intent intent = getIntent();
-        final String name = intent.getStringExtra("name");
-        final String price = intent.getStringExtra("price");
-        final int imageid = intent.getIntExtra("imageid",R.drawable.airplane);
+        name = intent.getStringExtra("name");
+        price = intent.getStringExtra("price");
+        imageid = intent.getStringExtra("imageid");
         final int position = intent.getIntExtra("position",0);
-        Detail_image.setImageResource(imageid);
+        try{
+            Bitmap bitmap = BitmapFactory.decodeFile(imageid);
+            Detail_image.setImageBitmap(bitmap);
+        }catch (Exception e){
+            Detail_image.setImageResource(R.drawable.airplane);
+        }
         TextView Detail_name = (TextView)findViewById(R.id.detail_title);
         Detail_name.setText(name);
         TextView Detail_price = (TextView)findViewById(R.id.detail_price);
         Detail_price.setText(price);
         detail_item = new item(name,price,imageid);
-        ShowTest.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                List <item>itemList = DataSupport.findAll(item.class);
-                for(item items:itemList){
-                    Log.d("query","name = "+items.getName());
-                    Log.d("query","price = "+items.getPrice());
-                    Log.d("query","id = "+items.getImageid());
-                    Log.d("query","count = "+items.getCount());
-                }
-            }
-        });
         AddToCart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

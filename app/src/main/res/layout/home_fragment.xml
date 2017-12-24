@@ -9,6 +9,40 @@
     android:paddingLeft="5dp"
     android:paddingRight="5dp"
     android:id="@+id/homepage">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="45sp"
+        android:weightSum="10"
+        android:orientation="horizontal"
+        android:id="@+id/linearLayout5">
+        <EditText
+            android:layout_width="0dp"
+            android:layout_weight="7"
+            android:layout_height="wrap_content"
+            android:hint="search..."
+            android:id="@+id/editText2"
+            android:layout_toStartOf="@+id/home_search" />
+        <Button
+            android:layout_width="0dp"
+            android:layout_height="45sp"
+            android:layout_weight="3"
+            android:text="search..."
+            android:id="@+id/home_search"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true" />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/linearLayout5">
+        <android.support.v7.widget.RecyclerView
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/home_list">
+        </android.support.v7.widget.RecyclerView>
+    </LinearLayout>
     <android.support.design.widget.FloatingActionButton
         android:layout_width="wrap_content"
         app:fabSize="normal"
@@ -20,26 +54,8 @@
         android:layout_marginEnd="40sp"
         android:layout_marginBottom="40sp"
         />
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="search..."
-        android:id="@+id/editText2"
-        android:layout_toStartOf="@+id/home_search" />
 
-    <Button
-        android:layout_width="50sp"
-        android:layout_height="50sp"
-        android:background="@drawable/go"
-        android:id="@+id/home_search"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true" />
-    <android.support.v7.widget.RecyclerView
-        android:paddingTop="5dp"
-        android:paddingBottom="5dp"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@+id/editText2"
-        android:id="@+id/home_list">
-    </android.support.v7.widget.RecyclerView>
+
+
+
 </RelativeLayout>

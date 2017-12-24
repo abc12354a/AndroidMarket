@@ -1,17 +1,18 @@
-package com.example.abc12.navigationview.Adapter;
+package com.example.abc12.navigationview;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.net.Uri;
+import android.os.Environment;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
-
-import com.example.abc12.navigationview.ItemDetails;
-import com.example.abc12.navigationview.R;
-import com.example.abc12.navigationview.item;
 
 import java.util.List;
 
@@ -20,7 +21,7 @@ import java.util.List;
  */
 
 public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ViewHolder> {
-    private List<item> mitems;
+    private List<item_net> mitems;
     static class ViewHolder extends RecyclerView.ViewHolder{
         ImageView itemimage;
         TextView itemname;
@@ -34,16 +35,23 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ViewHolder> {
             itemview = view;
         }
     }
-    public ItemAdapter(List<item> items){
+    public ItemAdapter(List<item_net> items){
         mitems = items;
     }
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        item items = mitems.get(position);
-        holder.itemimage.setImageResource(items.getImageid());
+        item_net items = mitems.get(position);
+        Bitmap bitmap;
+        try {
+            bitmap = BitmapFactory.decodeFile(Environment.getExternalStorageDirectory()+"/SHOP/"+items.getName()+".png");
+            holder.itemimage.setImageBitmap(bitmap);
+        }catch (Exception e){
+            holder.itemimage.setImageResource(R.drawable.ok);
+            Log.d("Item_Adapter.set: ",e.toString());
+        }
         holder.itemname.setText(items.getName());
-        holder.itemprice.setText(items.getPrice());
+        holder.itemprice.setText(items.getPrice().toString());
     }
 
     @Override
@@ -66,14 +74,14 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ViewHolder> {
             @Override
             public void onClick(View view) {
                 int position = holder.getAdapterPosition();
-                item items = mitems.get(position);
+                item_net items = mitems.get(position);
                 Intent OpenDetails = new Intent(view.getContext(),ItemDetails.class);
                 String name = items.getName();
-                String price = items.getPrice();
-                int imageid = items.getImageid();
+                String price = items.getPrice().toString();
+                String path = Environment.getExternalStorageDirectory()+"/SHOP/"+items.getName()+".png";
                 OpenDetails.putExtra("name",name);
                 OpenDetails.putExtra("price",price);
-                OpenDetails.putExtra("imageid",imageid);
+                OpenDetails.putExtra("imageid",path);
                 OpenDetails.putExtra("postion",position);
                 view.getContext().startActivity(OpenDetails);
             }

@@ -1,7 +1,9 @@
 package com.example.abc12.navigationview;
 
+import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.graphics.Path;
 import android.os.Handler;
 import android.os.Message;
 import android.support.v7.app.AppCompatActivity;
@@ -42,7 +44,11 @@ public class Login extends AppCompatActivity {
                     progressDialog.cancel();
                     Toast.makeText(getBaseContext(),"登陆成功！",Toast.LENGTH_SHORT).show();
                     Intent OpenMain = new Intent(getBaseContext(),MainActivity.class);
+                    Bundle bundle = new Bundle();
+                    OpenMain.putExtras(bundle);
+                    OpenMain.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                     getBaseContext().startActivity(OpenMain);
+                    finish();
                     break;
                 case LOGIN_FAILED:
                     progressDialog.cancel();
@@ -70,6 +76,14 @@ public class Login extends AppCompatActivity {
         Connector.getDatabase();
         //------------------------------------------------------
         InitUI();
+        if(BmobUser.getCurrentUser()!=null){
+            Intent OpenMain = new Intent(getBaseContext(),MainActivity.class);
+            Bundle bundle = new Bundle();
+            OpenMain.putExtras(bundle);
+            OpenMain.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            getBaseContext().startActivity(OpenMain);
+            this.finish();
+        }
         Login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
