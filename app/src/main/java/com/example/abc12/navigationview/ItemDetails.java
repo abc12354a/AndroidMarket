@@ -17,6 +17,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -33,12 +34,17 @@ public class ItemDetails extends AppCompatActivity {
     private String name;
     private String price;
     private String imageid;
+    private EditText E_num;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.itemdetails);
         Toolbar toolbar = (Toolbar)findViewById(R.id.detail_toolbar);
         Button AddToCart = (Button)findViewById(R.id.detail_buy);
+        Button add_num = (Button)findViewById(R.id.detail_add);
+        Button sub_num = (Button)findViewById(R.id.detail_sub);
+        E_num = (EditText)findViewById(R.id.detail_num);
+        E_num.setText("1");
         setSupportActionBar(toolbar);
         ActionBar actionBar = getSupportActionBar();
         if(actionBar !=null){
@@ -67,6 +73,30 @@ public class ItemDetails extends AppCompatActivity {
         TextView Detail_price = (TextView)findViewById(R.id.detail_price);
         Detail_price.setText(price);
         detail_item = new item(name,price,imageid);
+        add_num.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                try{
+                    Integer temp_num = Integer.parseInt(E_num.getText().toString());
+                    E_num.setText((temp_num+1)+"");
+                }
+                catch (Exception e){
+                    Log.d("fatal error, trans: ",e.toString());
+                }
+            }
+        });
+        sub_num.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                try{
+                    Integer temp_num = Integer.parseInt(E_num.getText().toString());
+                    E_num.setText((temp_num-1)+"");
+                }
+                catch (Exception e){
+                    Log.d("fatal error, trans: ",e.toString());
+                }
+            }
+        });
         AddToCart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

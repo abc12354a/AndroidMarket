@@ -17,6 +17,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.abc12.navigationview.Adapter.CartItemAdapter;
@@ -42,9 +43,7 @@ public class CartFragment extends Fragment {
         public void handleMessage(Message msg) {
             switch (msg.what){
                 case PROGRESS_ON:
-                    Log.d("progress:","on");
                     if(initItemList()){
-                        Log.d("progress:","ok");
                         progressDialog.cancel();
                         adapter.notifyDataSetChanged();}
                     break;
@@ -61,16 +60,43 @@ public class CartFragment extends Fragment {
         FloatingActionButton pay = (FloatingActionButton)view.findViewById(R.id.cart_pay);
         Button Pickall = (Button)view.findViewById(R.id.cart_pickall);
         Button UnPickall = (Button)view.findViewById(R.id.cart_unpickall);
-        Button Refresh = (Button)view.findViewById(R.id.refresh);
+        Button Refresh = (Button)view.findViewById(R.id.cart_refresh);
+        Button Del = (Button)view.findViewById(R.id.cart_del);
         LinearLayoutManager layoutManager = new LinearLayoutManager(view.getContext());
         adapter = new CartItemAdapter(itemList);
         ItemListView.setAdapter(adapter);
         ItemListView.setLayoutManager(layoutManager);
         ((AppCompatActivity)getActivity()).setSupportActionBar((Toolbar)view.findViewById(R.id.toolbar));
+        Del.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Map<Integer,Boolean> map = adapter.getMap();
+                for(int i = 0;i<map.size();i++){
+                    if(map.get(i)){
+                        try {
+                            String temp_name = itemList.get(i).getName();
+                            DataSupport.deleteAll(item.class, "name = ?", temp_name);
+                        }
+                        catch (Exception e){
+                            Log.d("cart_del_error: ",e.toString());
+                        }
+                    }
+                }
+                itemList.clear();
+                List<item> itemList2 = DataSupport.findAll(item.class);
+                for (item items2:itemList2){
+                    itemList.add(items2);
+                }
+                for(int i = 0;i<itemList.size();i++){
+                    map.put(i,false);
+                }
+                adapter.notifyDataSetChanged();
+            }
+        });
         Refresh.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                progressDialog = ProgressDialog.show(getContext(),"alert","refresh",true,true,null);
+                progressDialog = ProgressDialog.show(getContext(),"刷新中","请稍等...",true,true,null);
                 Log.d("refresh: ","refresh");
                 new Handler().postDelayed(new Runnable() {
                     @Override

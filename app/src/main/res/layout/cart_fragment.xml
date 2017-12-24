@@ -41,7 +41,29 @@
                 android:background="@drawable/icon_pickall"
                 android:layout_alignBaseline="@+id/cart_account"
                 android:layout_alignBottom="@+id/cart_account"
-                android:layout_toStartOf="@+id/refresh" />
+                />
+
+            <Button
+                android:layout_width="40sp"
+                android:layout_centerVertical="true"
+                android:layout_height="40sp"
+                android:background="@drawable/refresh"
+                android:id="@+id/cart_refresh"
+                android:layout_alignBaseline="@+id/cart_account"
+                android:layout_alignBottom="@+id/cart_account"
+                android:layout_alignParentEnd="true" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="40sp"
+                android:hint="abc12354a@gmail.com"
+                android:textSize="18sp"
+                android:paddingBottom="3dp"
+                android:paddingLeft="3dp"
+                android:id="@+id/cart_account"
+                android:gravity="left|bottom"
+                android:layout_alignParentTop="true"
+                android:layout_toEndOf="@+id/cart_pickall" />
 
             <Button
                 android:layout_width="40sp"
@@ -49,31 +71,10 @@
                 android:layout_centerVertical="true"
                 android:background="@drawable/iocn_unpickall"
                 android:id="@+id/cart_unpickall"
-                android:layout_toStartOf="@+id/cart_pickall"
-                android:layout_alignBottom="@+id/cart_pickall" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="40sp"
-                android:hint="abc12354a@gmail.com"
-                android:textSize="18sp"
-                android:paddingBottom="3dp"
-                android:paddingLeft="3dp"
-                android:id="@+id/cart_account"
-                android:layout_alignParentTop="true"
-                android:layout_alignParentStart="true"
-                android:gravity="left|bottom"
-                android:layout_toStartOf="@+id/cart_unpickall" />
-
-            <Button
-                android:layout_width="40sp"
-                android:layout_centerVertical="true"
-                android:layout_height="40sp"
-                android:background="@drawable/refresh"
-                android:id="@+id/refresh"
                 android:layout_alignBaseline="@+id/cart_account"
                 android:layout_alignBottom="@+id/cart_account"
-                android:layout_alignParentEnd="true" />
+
+                android:layout_toStartOf="@+id/cart_refresh" />
         </RelativeLayout>
 
         <RelativeLayout
@@ -111,8 +112,8 @@
                 android:layout_height="50sp"
                 android:background="@drawable/delete"
                 android:id="@+id/cart_del"
-
-                android:layout_alignParentTop="true"
+                android:layout_alignBaseline="@+id/cart_showprice"
+                android:layout_alignBottom="@+id/cart_showprice"
                 android:layout_alignParentEnd="true" />
 
 

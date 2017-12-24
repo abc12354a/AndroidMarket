@@ -86,13 +86,13 @@
                     android:text="+"
                     android:id="@+id/detail_add"
                     android:layout_centerVertical="true"
-                    android:layout_toEndOf="@+id/num" />
+                    android:layout_toEndOf="@+id/detail_num" />
 
                 <EditText
                     android:layout_width="60dp"
                     android:layout_height="wrap_content"
                     android:textSize="16sp"
-                    android:id="@+id/num"
+                    android:id="@+id/detail_num"
                     android:hint="0"
                     android:inputType="number"
                     android:gravity="center"

@@ -44,6 +44,7 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ViewHolder> {
         item_net items = mitems.get(position);
         Bitmap bitmap;
         try {
+            Log.d("pass_test: ","pass");
             bitmap = BitmapFactory.decodeFile(Environment.getExternalStorageDirectory()+"/SHOP/"+items.getName()+".png");
             holder.itemimage.setImageBitmap(bitmap);
         }catch (Exception e){

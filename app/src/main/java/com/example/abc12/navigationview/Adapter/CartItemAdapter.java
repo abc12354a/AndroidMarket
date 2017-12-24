@@ -1,6 +1,8 @@
 package com.example.abc12.navigationview.Adapter;
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -38,6 +40,7 @@ public class CartItemAdapter extends RecyclerView.Adapter<CartItemAdapter.ViewHo
         TextView ItemPrice;
         TextView ItemName;
         CheckBox ItemCheck;
+        TextView ItemNum;
         public ViewHolder(View view){
             super(view);
             cardView = (CardView) view;
@@ -45,6 +48,7 @@ public class CartItemAdapter extends RecyclerView.Adapter<CartItemAdapter.ViewHo
             ItemName = (TextView)view.findViewById(R.id.cart_item_name);
             ItemPrice = (TextView)view.findViewById(R.id.cart_item_price);
             ItemCheck = (CheckBox)view.findViewById(R.id.cart_item_check);
+            ItemNum = (TextView)view.findViewById(R.id.cart_item_num);
         }
     }
     public CartItemAdapter(List<item> itemslist){
@@ -71,8 +75,18 @@ public class CartItemAdapter extends RecyclerView.Adapter<CartItemAdapter.ViewHo
     @Override
     public void onBindViewHolder(ViewHolder holder, final int position) {
         item items = mItemList.get(position);
+        try{
+            Bitmap bitmap = BitmapFactory.decodeFile(items.getImageid());
+            if(bitmap == null){
+                holder.ItemImg.setImageResource(R.drawable.default_img);
+            }else {
+                holder.ItemImg.setImageBitmap(bitmap);
+            }
+        }catch (Exception e){
+            holder.ItemImg.setImageResource(R.drawable.default_img);
+        }
+        holder.ItemNum.setText(items.getCount().toString());
         holder.ItemName.setText(items.getName());
-        holder.ItemImg.setImageResource(items.getImageid());
         holder.ItemPrice.setText(items.getPrice());
         holder.ItemCheck.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
@@ -90,7 +104,6 @@ public class CartItemAdapter extends RecyclerView.Adapter<CartItemAdapter.ViewHo
         }
         holder.ItemCheck.setChecked(map.get(position));
     }
-
     @Override
     public int getItemCount() {
         return mItemList.size();
