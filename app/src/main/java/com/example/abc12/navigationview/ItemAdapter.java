@@ -45,7 +45,7 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ViewHolder> {
         Bitmap bitmap;
         try {
             Log.d("pass_test: ","pass");
-            bitmap = BitmapFactory.decodeFile(Environment.getExternalStorageDirectory()+"/SHOP/"+items.getName()+".png");
+            bitmap = BitmapFactory.decodeFile(Environment.getExternalStorageDirectory()+"/SHOP/"+items.getName()+".jpg");
             holder.itemimage.setImageBitmap(bitmap);
         }catch (Exception e){
             holder.itemimage.setImageResource(R.drawable.ok);
@@ -79,7 +79,7 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ViewHolder> {
                 Intent OpenDetails = new Intent(view.getContext(),ItemDetails.class);
                 String name = items.getName();
                 String price = items.getPrice().toString();
-                String path = Environment.getExternalStorageDirectory()+"/SHOP/"+items.getName()+".png";
+                String path = Environment.getExternalStorageDirectory()+"/SHOP/"+items.getName()+".jpg";
                 OpenDetails.putExtra("name",name);
                 OpenDetails.putExtra("price",price);
                 OpenDetails.putExtra("imageid",path);

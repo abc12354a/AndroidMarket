@@ -75,7 +75,7 @@ public class HomeFragment extends Fragment {
                     public void run() {
                         BmobQuery<item_net> query = new BmobQuery<item_net>();
                         query.addWhereGreaterThan("price",0);
-                        query.setLimit(10);
+                        query.setLimit(100);
                         query.findObjects(new FindListener<item_net>() {
                             @Override
                             public void done(List<item_net> list, BmobException e) {
@@ -83,7 +83,7 @@ public class HomeFragment extends Fragment {
                                     for (item_net items:list){
                                         BmobFile pic_file = items.getPicFile();
                                         if(pic_file != null){
-                                            File savefile = new File(Environment.getExternalStorageDirectory()+"/SHOP/",pic_file.getFilename());
+                                            File savefile = new File(Environment.getExternalStorageDirectory()+"/SHOP/",items.getName()+".jpg");
                                             pic_file.download(savefile, new DownloadFileListener() {
                                                 @Override
                                                 public void done(String s, BmobException e) {
@@ -126,7 +126,7 @@ public class HomeFragment extends Fragment {
             public void run() {
                 BmobQuery<item_net> query = new BmobQuery<item_net>();
                 query.addWhereGreaterThan("price",0);
-                query.setLimit(10);
+                query.setLimit(100);
                 query.findObjects(new FindListener<item_net>() {
                     @Override
                     public void done(List<item_net> list, BmobException e) {

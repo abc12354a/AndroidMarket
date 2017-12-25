@@ -25,9 +25,10 @@ dependencies {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
     compile 'cn.bmob.android:bmob-sdk:3.5.5'
-    compile 'com.android.support:appcompat-v7:26.0.0-alpha1'
+//    compile 'com.android.support:appcompat-v7:26.0.0-alpha1'
     compile 'com.android.support:design:24.2.1'
     compile 'com.android.support:cardview-v7:24.2.1'
     compile 'org.litepal.android:core:1.3.2'
+    compile 'com.github.jdsjlzx:LRecyclerView:1.4.3'
     testCompile 'junit:junit:4.12'
 }
